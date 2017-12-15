@@ -1,0 +1,17 @@
+{
+	"settings":{
+		"number_of_shards":5,
+		"number_of_replicas":0
+	},
+	"mappings":{
+		"article":{
+			"dynamic":"strict",
+			"properties":{
+				"id":{"type":"integer","store":"yes"},
+				"title":{"type":"string","store":"yes","index":"analyzed","analyzer":"ik"},
+				"describe":{"type":"string","store":"yes","index":"analyzed","analyzer":"ik"},
+				"author":{"type":"string","store":"yes","index":"no"}
+			}
+		}
+	}
+}

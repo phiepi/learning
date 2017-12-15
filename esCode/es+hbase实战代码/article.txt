@@ -1,0 +1,19 @@
+﻿本部分教程由慕课大巴网友分享，慕课大巴是一个教程分享社区
+
+访问 www.mukedaba.com 了解更多
+
+-------------------------------------------------------
+
+1	HRegionServer详解	超人学院团队	HRegionServer内部管理了一系列HRegion对象，每个HRegion对应了Table中的一个Region，HRegion中由多个HStore组成。每个HStore对应了Table中的一个Column Family的存储，可以看出每个Column Family其实就是一个集中的存储单元，因此最好将具备共同IO特性的column放在一个Column Family中，这样最高效
+2	Hive的数据存储	超人学院团队	Hive的存储是建立在Hadoop文件系统之上的。Hive本身没有专门的数据存储格式，也不能为数据建立索引，用户可以自由地组织Hive中的表，只需要在创建表的时候告诉Hive数据中的列分隔符和行分隔符就可以解析数据了
+3	nosql聚合模型详解	超人学院团队	根据场景来设计聚合，可以将采集数据时所需的节点数降至最小。在数据库中明确包含聚合结构，就可以根据这个信息知道哪些数据需要在一起操作了，这些数据就应该放在同一个节点上。总之在集群上运行时聚合是中心环节，因为数据库必须保证将聚合内的数据放在同一个节点上。聚合还是更新操作的最小数据单位，对事物控制来说，以聚合为操作单元正合适。
+4	Hive参数设置	超人学院团队	即参数声明覆盖命令行参数，命令行参数覆盖配置文件设定。注意某些系统级的参数，例如log4j相关的设定，必须用前两种方式设定，因为那些参数的读取在Session建立以前已经完成了。
+5	Hive 创建分区	超人学院团队	HIVE的分区通过在创建表时启用partition by实现，用来partition的维度并不是实际数据的某一列，具体分区的标志是由插入内容时给定的。当要查询某一分区的内容时可以采用where语句，形似where tablename.partition_key > a来实现。
+6	HbaseCRUD操作	超人学院团队	简单的CRUD操作，下面的是对HBase基本操作进行面向对象封装后的CRUD操作。所有以HBase作为存储数据库的DAO层，都继承HBaseDaoImpl类，下列是使用示例。
+7	Docker image的工作原理	超人学院团队	AUFS (AnotherUnionFS) 是一种 Union FS, 简单来说就是支持将不同目录挂载到同一个虚拟文件系统下(unite several directories into a single virtual filesystem)的文件系统, 更进一步的理解, AUFS支持为每一个成员目录(类似Git Branch)设定readonly、readwrite 和 whiteout-able 权限, 同时 AUFS里有一个类似分层的概念, 对 readonly 权限的 branch 可以逻辑上进行修改(增量地, 不影响 readonly部分的)。通常 Union FS 有两个用途, 一方面可以实现不借助 LVM、RAID 将多个disk挂到同一个目录下, 另一个更常用的就是将一个 readonly 的 branch 和一个 writeable 的 branch 联合在一起，LiveCD正是基于此方法可以允许在 OS image 不变的基础上允许用户在其上进行一些写操作。Docker 在AUFS 上构建的 container image 也正是如此。
+8	Hbase详解—–管理 Splitting	超人学院团队	除了让Hbase自动切割你的Region,你也可以手动切割。 随着数据量的增大，splite会被持续执行。如果你需要知道你现在有几个region,比如长时间的debug或者做调优，你需要手动切割。通过跟踪日志来了解region级的问题是很难的，因为他在不停的切割和重命名。data offlineing bug和未知量的region会让你没有办法。如果一个 HLog 或者 StoreFile由于一个奇怪的bug，Hbase没有执行它。等到一天之后，你才发现这个问题，你可以确保现在的regions和那个时候的一样，这样你就可以restore或者replay这些数据。你还可以调优你的合并算法。如果数据是均匀的，随着数据增长，很容易导致split / compaction疯狂的运行。因为所有的region都是差不多大的。用手的切割，你就可以交错执行定时的合并和切割操作，降低IO负载。
+9	Scala匿名函数详解	超人学院团队	如果匿名函数的期望类型具有scala.Functionn[S1,...,Sn, R]的形式，则e的期望类型是R，每个参数xi的类型Ti可忽略，可假定Ti = Si。如果匿名函数的期望类型是某些其他类型，则所有正式参数的类型都必须显式的给出，且e的期望类型是未定义的。匿名函数的类型是scala.Functionn[S1,...,Sn, T]，这里T是e的打包类型(§6.1)。T必须等价于一个不引用任何正式参数xi的类型。
+10	使用FileSystem API读取数据	超人学院团队	文件在Hadoop文件系统中显示为一个Hadoop Path对象(不是一个java.io.File对象，因为它的语义与本地文件系统关联太紧密)。我们可以把一个路径视为一个Hadoop文件系统URI，如hdfs://localhost/user/tom/quangle.txt。Configuration对象封装了一个客户端或服务器的配置，这是用从类路径读取而来的配置文件(如conf/core-site.xml)来设置的。第一个方法返回的是默认文件系统(在conf/core-site.xml中设置的，如果没有设置过，则是默认的本地文件系统)。第二个方法使用指定的URI方案及决定所用文件系统的权限，如果指定URI中没有指定方案，则退回默认的文件系统。
+11	Java MapReduce详解–（3）	超人学院团队	如果Hadoop命令是以类名作为第一个参数，它就会启动一个JVM来运行这个类。使用命令比直接使用Java更方便，因为前者把类的路径(及其依赖关系)加入Hadoop的库中，并获得Hadoop的配置。要添加应用程序类的路径，我们需要定义一个HADOOP_CLASSPATH环境变量，Hadoop脚本会来执行相关操作。
+12	深入理解HBase	超人学院团队	首先HBase Client端会连接Zookeeper Qurom(从下面的代码也能看出来，例如：HBASE_CONFIG.set("hbase.zookeeper.quorum","192.168.50.216″) )。通过Zookeeper组件Client能获知哪个Server管理-ROOT-Region。那么Client就去访问管理-ROOT-的 Server，在META中记录了HBase中所有表信息，(你可以使用 scan '.META.' 命令列出你创建的所有表的详细信息),从而获取Region分布的信息。一旦Client获取了这一行的位置信息，比如这一行属于哪个 Region，Client将会缓存这个信息并直接访问HRegionServer。
+13	HDFS–命令行接口详解	超人学院团队	在我们设置伪分布配置时，有两个属性需要进一步解释。首先是fs.default.name，设置为hdfs://localhost/, 用来为Hadoop设置默认文件系统。文件系统是由URI指定的，这里我们已使用了一个hdfs URI 来配置HDFS为Hadoop的默认文件系统。HDFS的守护程序将通过这个属性来决定HDFS名称节点的宿主机和端口。我们将在localhost上运行，默认端口为8020。这样一来，HDFS用户将通过这个属性得知名称节点在哪里运行以便于连接到它。
